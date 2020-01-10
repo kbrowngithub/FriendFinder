@@ -5,7 +5,7 @@ Compatibility-based "Friend-Finder" application
 
 ### Link: 
 
-https://limitless-mountain-34938.herokuapp.com/
+https://limitless-mountain-34938.herokuapp.com/home
 
 
 ```
@@ -25,7 +25,8 @@ of the user with the best overall match.
 ### Process Flow
 ```
     A survey is first offered to the user with 10 questions. Each answer is on a scale of 1 to 5 based on 
-    how much the user agrees or disagrees with a question.
+    how much the user agrees or disagrees with a question. SurveyJS was used for all survey questions
+    (https://surveyjs.io/Overview/Library/).
 
     Data is stored inside of app/data/friends.js as an array of objects. Each of these objects
     has the following format:
@@ -65,6 +66,7 @@ Technology Requirements:
     - Javascript
     - node.js
     - Express
+    - SurveyJS
     - Source Control: Github
     - Hosting: Heroku
     

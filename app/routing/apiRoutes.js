@@ -31,28 +31,28 @@ module.exports = function (app) {
     // ---------------------------------------------------------------------------
 
     app.post("/api/friends", function (req, res) {
-        console.log(`/api/friends req.body = ${JSON.stringify(req.body)}`);
+        // console.log(`/api/friends req.body = ${JSON.stringify(req.body)}`);
         // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
         // It will do this by sending out the value "true" have a table
         // req.body is available since we're using the body parsing middleware
 
         var i; var j; var bestScore = [];
-        console.log(`${req.body.scores}`);
+        // console.log(`${req.body.scores}`);
         for (var i = 0; i < friendsData.length; i++) {
             // console.log(`${friendsData[i].scores}`);
             bestScore.push(getDiffs(req.body.scores, friendsData[i].scores));
-            console.log(`Index ${i} score: ${bestScore}`);
+            // console.log(`Index ${i} score: ${bestScore}`);
         }   
 
         var lowestScore = Math.min(...bestScore);
         var index = bestScore.indexOf(lowestScore);
-        console.log(`Index of best match is ${index}`);
+        // console.log(`Index of best match is ${index}`);
         res.json({ name: friendsData[index].name, photo: friendsData[index].photo});
 
     });
 
     app.post("/api/test", function (req, res) {
-        console.log(`/api/test req = ${req}`);
+        // console.log(`/api/test req = ${req}`);
         res.json({ ok: true });
     });
 
@@ -66,12 +66,12 @@ module.exports = function (app) {
 
 function getDiffs(arr1, arr2) {
     const finalArr = [];
-    console.log(`Array 1: ${arr1}`);
-    console.log(`Array 2: ${arr2}`);
+    // console.log(`Array 1: ${arr1}`);
+    // console.log(`Array 2: ${arr2}`);
     for(var i = 0; i < arr1.length; i++) {
         finalArr.push(Math.abs(parseInt(arr1[i]) - arr2[i]));
     }
 
-    console.log(finalArr.reduce((a, b) => a + b, 0));
+    // console.log(finalArr.reduce((a, b) => a + b, 0));
     return finalArr.reduce((a, b) => a + b, 0);
 }

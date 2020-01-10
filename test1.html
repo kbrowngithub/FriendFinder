@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+</head>
+
+<body>
+
+    <div class="card">
+        <div class="card-header">
+            Test Form
+        </div>
+        <div class="card-body">
+            <form role="form">
+                <div class="form-group">
+                    <h3><strong>Question 1</strong></h3>
+                    <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+                    <select class="chosen-select" id="q1" style="display: none;">
+                        <option value=""></option>
+                        <option value="1">1 (Strongly Disagree)</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5 (Strongly Agree)</option>
+                    </select>
+                    <div class="chosen-container chosen-container-single" style="width: 157px;" title="" id="q1_chosen"><a
+                        class="chosen-single chosen-default"><span>Select an Option</span>
+                        <div><b></b></div>
+                    </a>
+                    <div class="chosen-drop">
+                        <div class="chosen-search"><input type="text" autocomplete="off"></div>
+                        <ul class="chosen-results"></ul>
+                    </div>
+                </div>
+                </div>
+                <div class="form-group">
+                    <label for="reserve-phone">Question 2</label>
+                    <input type="text" class="form-control" id="q2_chosen">
+                </div>
+                <div class="form-group">
+                    <label for="reserve-email">Question 3</label>
+                    <input type="text" class="form-control" id="q3_chosen">
+                </div>
+                <div class="form-group">
+                    <label for="reserve-unique-id">Question 4</label>
+                    <input type="text" class="form-control" id="q4_chosen">
+                </div>
+                <button type="submit" class="btn btn-primary submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+    // Chosen CSS
+    var config = {
+        ".chosen-select": {},
+        ".chosen-select-deselect": {
+            allow_single_deselect: true
+        },
+        ".chosen-select-no-single": {
+            disable_search_threshold: 10
+        },
+        ".chosen-select-no-results": {
+            no_results_text: "Oops, nothing found!"
+        },
+        ".chosen-select-width": {
+            width: "95%"
+        }
+    };
+
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+    // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
+    // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
+    // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
+    // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
+
+    $(".submit").on("click", function (event) {
+        event.preventDefault();
+
+        // Here we grab the form elements
+        var newData = {
+            question1: $("#q1_chosen").val().trim(),
+            question2: $("#q2_chosen").val().trim(),
+            question3: $("#q3_chosen").val().trim(),
+            question4: $("#q4_chosen").val().trim()
+        };
+
+        console.log(`Data: ${JSON.stringify(newData)}`);
+
+        // This line is the magic. It"s very similar to the standard ajax function we used.
+        // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
+        // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
+        // depending on if a tables is available or not.
+
+        $.post("/api/test", newData,
+            function (data) {
+
+                // If a table is available... tell user they are booked.
+                if (data) {
+                    alert(`True case: Received response back from server: ${JSON.stringify(data)}`);
+                }
+
+                // If a table is available... tell user they on the waiting list.
+                else {
+                    alert(`False case: Received response back from server: ${JSON.stringify(data)}`);
+                }
+
+                // Clear the form when submitting
+                $("#reserve-name").val("");
+                $("#reserve-phone").val("");
+                $("#reserve-email").val("");
+                $("#reserve-unique-id").val("");
+
+            });
+
+    });
+
+    
+
+</script>

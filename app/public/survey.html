@@ -113,7 +113,7 @@
     <!-- Trigger/Open The Modal -->
     <button id="myBtn" class="btn">See Your Results</button>
 
-    <button id="resetBtn" class="btn">Retake Survey</button>
+    <!-- <button id="resetBtn" class="btn">Retake Survey</button> -->
 
     <!-- Modal -->
     <div id="myModal" class="modal">
@@ -121,16 +121,12 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <div class="modal-header">
-                <!-- <button type="button" class="close" data-dismiss="modal">×</button> -->
                 <h1 class="modal-title"><strong>Best Match</strong></h1>
             </div>
             <div class="modal-body">
                 <h2 id="match-name"></h2>
                 <img id="match-img" src="" alt="" height="200" width="200">
             </div>
-            <!-- <div class="modal-footer">
-                <button type="button" class="close btn btn-default" data-dismiss="modal">Close</button>
-            </div> -->
         </div>
 
     </div>
@@ -251,8 +247,6 @@
         }
 
         survey.onComplete.add(function (result) {
-            // document.querySelector('#surveyResult').textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3);
-            // AJAX post the data to the friends API.
             var userData = {
                 name: result.data.name,
                 photo: result.data.link,
@@ -277,7 +271,6 @@
                 $("#match-img").attr("src", data.photo);
 
                 // Show the modal with the best match
-                // $("#results-modal").modal("toggle");
                 // Get the modal
                 var modal = document.getElementById("myModal");
 
@@ -304,14 +297,11 @@
                         modal.style.display = "none";
                     }
                 }
-                // $("#myModal").style.display = "block";
-
             });
         });
 
 
         $("#surveyElement").Survey({ model: survey });
-// $("#surveyElement").Survey({model: survey});
     </script>
 </body>
 

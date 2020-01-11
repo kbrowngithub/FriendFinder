@@ -1,309 +1,226 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Friend Finder Survey</title>
+	<title>Friend Finder Survey</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- Link static CSS -->
+	<!-- <link rel="stylesheet" type="text/css" href="/style.css"> -->
+	<link href="https://fonts.googleapis.com/css?family=Baloo|Roboto" rel="stylesheet">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script src="https://unpkg.com/jquery"></script>
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://surveyjs.azureedge.net/1.1.31/survey.jquery.js"></script>
-    <link href="https://surveyjs.azureedge.net/1.1.31/modern.css" type="text/css" rel="stylesheet" />
-    <!-- <link rel="stylesheet" href="./index.css"> -->
-
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        /* The Modal (background) */
-        .modal {
-            display: none;
-            /* Hidden by default */
-            position: fixed;
-            /* Stay in place */
-            z-index: 1;
-            /* Sit on top */
-            padding-top: 100px;
-            /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%;
-            /* Full width */
-            height: 100%;
-            /* Full height */
-            overflow: auto;
-            /* Enable scroll if needed */
-            background-color: rgb(0, 0, 0);
-            /* Fallback color */
-            background-color: rgba(0, 0, 0, 0.4);
-            /* Black w/ opacity */
-        }
-
-        /* Modal Content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        #myBtn {
-            display: none;
-            float: right;
-            border: none;
-            border-radius: 1.214em;
-            color: #ffffff;
-            cursor: pointer;
-            font-family: Segoe UI;
-            font-size: 0.875em;
-            font-weight: bold;
-            outline: none;
-            padding: 0.5em 2.786em 0.6em;
-            text-align: left;
-            background-color: #1ab394;
-            float: left;
-        }
-
-        #resetBtn {
-            display: none;
-            float: right;
-            border: none;
-            border-radius: 1.214em;
-            color: #ffffff;
-            cursor: pointer;
-            font-family: Segoe UI;
-            font-size: 0.875em;
-            font-weight: bold;
-            outline: none;
-            padding: 0.5em 2.786em 0.6em;
-            text-align: left;
-            background-color: #1ab394;
-            float: right;
-        }
-
-        #match-img {
-            object-fit: cover;
-        }
-    </style>
+	<script
+	  src="https://code.jquery.com/jquery-3.2.1.min.js"
+	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-    <!-- <h1>Test Page</h1> -->
-    <div id="surveyElement"></div>
-    <div id="surveyResult"></div>
+	<div class="container content">
+		<h1>Friend Finder Survey</h1>
+		<p>Take a quick survey to find your perfect match!</p>
+		<form>
+			<div class="form-group">
+				<input id="name" type="text" class="form-control" placeholder="Name (Required)">
+			</div>
+			<div class="form-group">
+				<input id="photo" type="text" class="form-control" placeholder="Link to Profile Photo (Required)">
+			</div>
+			<div class="form-group">
+				<label for="question1">1.) Your mind is always buzzing with unexplored ideas and plans.</label>
+				<select class="form-control" id="q1">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question2">2.) Generally speaking, you rely more on your experience than your imagination.</label>
+				<select class="form-control" id="q2">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question3">3.) You find it easy to stay relaxed and focused even when there is some pressure.</label>
+				<select class="form-control" id="q3">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question4">4.) You rarely do something just out of sheer curiosity.</label>
+				<select class="form-control" id="q4">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question5">5.) People can rarely upset you.</label>
+				<select class="form-control" id="q5">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question6">6.) It is often difficult for you to relate to other people’s feelings.</label>
+				<select class="form-control" id="q6">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question7">7.) In a discussion, truth should be more important than people’s sensitivities.</label>
+				<select class="form-control" id="q7">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question8">8.) You rarely get carried away by fantasies and ideas.</label>
+				<select class="form-control" id="q8">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question9">9.) You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</label>
+				<select class="form-control" id="q9">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="question10">10.) You feel more energetic after spending time with a group of people.</label>
+				<select class="form-control" id="q10">
+					<option value="empty"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+		</form>
+		<div class="text-center">
+			<button id="submitBtn" type="submit" class="btn btn-success btn-lg">Submit</button>
+		</div>
+		
+		<!-- Modal after survey completion -->
+		<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h1 class="modal-title">Best Match</h1>
+					</div>
+					<div class="modal-body">
+						<h2 id="match-name"></h2>
+						<img id="match-img" src="#">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <!-- Trigger/Open The Modal -->
-    <button id="myBtn" class="btn">See Your Results</button>
+	<footer>
+		<div class="container">
+			<a href="/api/friends">API Friends List</a>
+			<span>|</span>
+			<a href="https://github.com/kbrowngithub/FriendFinder">GitHub Repo</a>
+		</div>
+	</footer>
 
-    <!-- <button id="resetBtn" class="btn">Retake Survey</button> -->
+</body>
+</html>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="modal-header">
-                <h1 class="modal-title"><strong>Best Match</strong></h1>
-            </div>
-            <div class="modal-body">
-                <h2 id="match-name"></h2>
-                <img id="match-img" src="" alt="" height="200" width="200">
-            </div>
-        </div>
+<script type="text/javascript">
+	$("#submitBtn").on("click", function(event) {
+		event.preventDefault();
 
-    </div>
+		// Form validation
+		var valid = true;
+		var errString = "";
+		var inputs = [
+					$("#name").val().trim(),
+					$("#photo").val().trim(),
+					$("#q1").val(),
+					$("#q2").val(),
+					$("#q3").val(),
+					$("#q4").val(),
+					$("#q5").val(),
+					$("#q6").val(),
+					$("#q7").val(),
+					$("#q8").val(),
+					$("#q9").val(),
+					$("#q10").val()
+				];
+		// console.log(inputs);
 
-    <!-- <script type="text/javascript" src="./index.js"></script> -->
-    <script type="text/javascript">
-        Survey
-            .StylesManager
-            .applyTheme("modern");
+		if(inputs[0] === "" || inputs[1] === "") {
+			valid = false;
+			errString = "Both Name and Link to Photo are required."
+		} else if(inputs.indexOf("empty") > -1) {
+			errString = `Please answer question number ${inputs.indexOf("empty") - 1}`;
+			valid = false;
+		}
 
-        var json = {
-            questions: [
-                {
-                    type: "text",
-                    isRequired: true,
-                    name: "name",
-                    title: "Name (Required)"
-                },
-                {
-                    type: "text",
-                    isRequired: true,
-                    name: "link",
-                    title: "Link to Photo Image (Required)"
-                },
-                {
-                    type: "rating",
-                    isRequired: true,
-                    name: "q1",
-                    title: "Your mind is always buzzing with unexplored ideas and plans.",
-                    minRateDescription: "1 (Strongly Disagree)",
-                    maxRateDescription: "5 (Strongly Agree)"
-                },
-                {
-                    type: "rating",
-                    isRequired: true,
-                    name: "q2",
-                    title: "Generally speaking, you rely more on your experience than your imagination.",
-                    minRateDescription: "1 (Strongly Disagree)",
-                    maxRateDescription: "5 (Strongly Agree)"
-                },
-                {
-                    type: "rating",
-                    isRequired: true,
-                    name: "q3",
-                    title: "You find it easy to stay relaxed and focused even when there is some pressure.",
-                    minRateDescription: "1 (Strongly Disagree)",
-                    maxRateDescription: "5 (Strongly Agree)"
-                },
-                {
-                    type: "rating",
-                    isRequired: true,
-                    name: "q4",
-                    title: "You rarely do something just out of sheer curiosity.",
-                    minRateDescription: "1 (Strongly Disagree)",
-                    maxRateDescription: "5 (Strongly Agree)"
-                },
-                {
-                    type: "rating",
-                    isRequired: true,
-                    name: "q5",
-                    title: "People can rarely upset you.",
-                    minRateDescription: "1 (Strongly Disagree)",
-                    maxRateDescription: "5 (Strongly Agree)"
-                },
-                {
-                    type: "rating",
-                    isRequired: true,
-                    name: "q6",
-                    title: "It is often difficult for you to relate to other people’s feelings.",
-                    minRateDescription: "1 (Strongly Disagree)",
-                    maxRateDescription: "5 (Strongly Agree)"
-                },
-                {
-                    type: "rating",
-                    isRequired: true,
-                    name: "q7",
-                    title: "In a discussion, truth should be more important than people’s sensitivities.",
-                    minRateDescription: "1 (Strongly Disagree)",
-                    maxRateDescription: "5 (Strongly Agree)"
-                },
-                {
-                    type: "rating",
-                    isRequired: true,
-                    name: "q8",
-                    title: "You rarely get carried away by fantasies and ideas.",
-                    minRateDescription: "1 (Strongly Disagree)",
-                    maxRateDescription: "5 (Strongly Agree)"
-                },
-                {
-                    type: "rating",
-                    isRequired: true,
-                    name: "q9",
-                    title: "You think that everyone’s views should be respected regardless of whether they are supported by facts or not.",
-                    minRateDescription: "1 (Strongly Disagree)",
-                    maxRateDescription: "5 (Strongly Agree)"
-                },
-                {
-                    type: "rating",
-                    isRequired: true,
-                    name: "q10",
-                    title: "You feel more energetic after spending time with a group of people.",
-                    minRateDescription: "1 (Strongly Disagree)",
-                    maxRateDescription: "5 (Strongly Agree)"
-                }
-            ]
-        };
+		if(valid === true) {
+			var newUser = {
+				name: inputs[0],
+				photo: inputs[1],
+				scores: inputs.slice(2,12)
+			};
+			// console.log(`newUser: ${newUser}`);
 
-        window.survey = new Survey.Model(json);
+			var currentURL = window.location.origin;
 
-        var nameQuestion = survey.getQuestionByName("name");
-        if (nameQuestion) {
-            nameQuestion.placeHolder = "Your Name Here";
-        }
-
-        var photoQuestion = survey.getQuestionByName("link");
-        if (photoQuestion) {
-            photoQuestion.placeHolder = "Link To Your Photo Here";
-        }
-
-        survey.onComplete.add(function (result) {
-            var userData = {
-                name: result.data.name,
-                photo: result.data.link,
-                scores: [
-                    result.data.q1,
-                    result.data.q2,
-                    result.data.q3,
-                    result.data.q4,
-                    result.data.q5,
-                    result.data.q6,
-                    result.data.q7,
-                    result.data.q8,
-                    result.data.q9,
-                    result.data.q10
-                ]
-            };
-            $.post("/api/friends", userData, function (data) {
-                console.log(`Data from post to /api/friends = ${JSON.stringify(data, null, 3)}`);
-
-                // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+			// Ajax call for receiving response after POST req
+			$.post(currentURL + "/api/friends", newUser, function(data) {
                 $("#match-name").text(data.name);
                 $("#match-img").attr("src", data.photo);
-
-                // Show the modal with the best match
-                // Get the modal
-                var modal = document.getElementById("myModal");
-
-                // Get the button that opens the modal
-                var btn = document.getElementById("myBtn");
-
-                // When the user clicks the button, open the modal 
-                btn.style.display = "block";
-                btn.onclick = function () {
-                    modal.style.display = "block";
-                }
-                modal.style.display = "block";
-
-                // Get the <span> element that closes the modal
-                var span = document.getElementsByClassName("close")[0];
-
-                // When the user clicks on <span> (x), close the modal
-                span.onclick = function () {
-                    modal.style.display = "none";
-                }
-
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function (event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
-            });
-        });
-
-
-        $("#surveyElement").Survey({ model: survey });
-    </script>
-</body>
-
-</html>
+				$("#myModal").modal("toggle");
+			});
+		} else {
+			// Alert incomplete data
+			alert(errString);
+		}
+	});
+</script>

@@ -47,6 +47,7 @@ module.exports = function (app) {
         var lowestScore = Math.min(...bestScore);
         var index = bestScore.indexOf(lowestScore);
         // console.log(`Index of best match is ${index}`);
+        // console.log(`name: ${friendsData[index].name}, photo: ${friendsData[index].photo}`);
         res.json({ name: friendsData[index].name, photo: friendsData[index].photo});
 
     });
